@@ -26,19 +26,22 @@ void insert_at_any_position(Node *head, int index, int value)
 {
     Node *newNode = new Node(value);
     Node *current = head;
-    int count = 0;
-    while (count < index)
+    for (int i = 0; i < index - 1; i++)
     {
         current = current->next;
-        count++;
     }
     newNode->next = current->next;
     current->next = newNode;
 }
 
-void insert_at_tail(Node* head, int value)
+void insert_at_tail(Node *head, int value)
 {
     Node *newNode = new Node(value);
+    if (head == NULL)
+    {
+        head = newNode;
+        return;
+    }
     Node *lastNode = head;
     while (lastNode->next)
     {
@@ -70,7 +73,7 @@ int main()
     insert_at_tail(head, 50);
     print_linked_list(head);
     cout << endl;
-    insert_at_any_position(head, 5, 999);
+    insert_at_any_position(head, 3, 999);
     print_linked_list(head);
     return 0;
 }
